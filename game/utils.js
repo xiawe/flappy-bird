@@ -1,5 +1,10 @@
 var log = console.log.bind(console)
 
+const randomBetween = function(start, end) {
+    var n = Math.random() * (end - start + 1) + start
+    return Math.floor(n)
+}
+
 var imgFromPath = function(path) {
     var img = new Image()
     img.src = path

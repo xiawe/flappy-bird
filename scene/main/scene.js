@@ -1,7 +1,3 @@
-const config = {
-    player_speed: 5
-}
-
 class Bullet extends XiaImage {
     constructor(game) {
         super(game, 'bullet')
@@ -57,10 +53,7 @@ class Player extends XiaImage {
         this.y += this.speed
     }
 }
-const randomBetween = function(start, end) {
-    var n = Math.random() * (end - start + 1) + start
-    return Math.floor(n)
-}
+
 class Enemy extends XiaImage {
     constructor(game) {
         var e = randomBetween(0, 4)

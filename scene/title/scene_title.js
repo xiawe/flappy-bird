@@ -1,9 +1,55 @@
+class Pipe {
+    constructor(game) {
+        this.game = game 
+        this.spaceX = 200
+        this.spaceY = 150
+        this.pipes = []
+        this.setup()
+    }
+    static new(game) {
+        return new this(game)
+    }
+    setup() {
+        var game = this.game
+        var spaceX = this.spaceX
+        var pipeNum = 3
+        for (let i = 0; i < pipeNum; i++) {
+            var p1 = XiaImage.new(game, 'pipe1')
+            p1.x = 500 + spaceX * i 
+            var p2 = XiaImage.new(game, 'pipe2')
+            p2.x = p1.x 
+            this.resetPosion(p1, p2)
+            this.pipes.push(p1)
+            this.pipes.push(p2)
+        }
+        log(this.pipes)
+    }
+    resetPosion(p1, p2) {
+        p1.y = -randomBetween(0, 40)
+        p2.y = p1.y + p1.h + this.spaceY
+    }
+    update() {
+        for (var p of this.pipes) {
+            p.x -=5
+            if (p.x < -100) {
+                p.x += 600
+            }
+        }
+    }
+    draw() {
+        for (var p of this.pipes) {
+            this.game.drawImg(p)
+        }
+    }
+}
+
 class SceneTitle extends XiaScene {
     constructor(game) {
         super(game)
         var label = XiaLabel.new(this.game, 'hello')
         this.addElement(label)
         var w = Bird.new(this.game)
+        this.pipe = Pipe.new(game)
         this.setupInputs(w)
         this.setup(w)
         w.x = 100
@@ -21,6 +67,8 @@ class SceneTitle extends XiaScene {
         this.bg.w = 400
         // this.bg.h = this.bg.h * 2
         this.addElement(this.bg)
+        log('pipe', this.pipe)
+        this.addElement(this.pipe)
         // this.land = XiaImage.new(game, 'land')
         // this.addElement(this.land)
         this.lands = []

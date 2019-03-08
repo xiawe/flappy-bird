@@ -24,6 +24,8 @@ var __main = function() {
     var images = {
         bg: 'img/bg.png',
         land: 'img/land.png',
+        pipe1: 'img/pipe1.png',
+        pipe2: 'img/pipe2.png',
         bird1: 'img/bird-01.png',
         bird2: 'img/bird-02.png',
         bird3: 'img/bird-03.png',
