@@ -3,6 +3,7 @@ class Pipe {
         this.game = game 
         this.spaceX = 200
         this.spaceY = 150
+        this.pipeNum = 3
         this.pipes = []
         this.setup()
     }
@@ -10,9 +11,10 @@ class Pipe {
         return new this(game)
     }
     setup() {
+        // log('setup')
         var game = this.game
         var spaceX = this.spaceX
-        var pipeNum = 3
+        var pipeNum = this.pipeNum
         for (let i = 0; i < pipeNum; i++) {
             var p1 = XiaImage.new(game, 'pipe1')
             p1.x = 500 + spaceX * i 
@@ -28,15 +30,23 @@ class Pipe {
         p1.y = -randomBetween(0, 40)
         p2.y = p1.y + p1.h + this.spaceY
     }
+    debug() {
+        this.spaceX = config.pipeSpaceX.value
+        // this.setup()
+        // log('debug', this.spaceX)
+    }
     update() {
         for (var p of this.pipes) {
             p.x -=5
-            if (p.x < -100) {
-                p.x += 600
+            if (p.x < -20) {
+                log('<', this.spaceX,this.pipeNum)
+                p.x += this.spaceX * (this.pipeNum + 1)
+                log('?', this.spaceX)
             }
         }
     }
     draw() {
+        // log('pipes', this.pipes)
         for (var p of this.pipes) {
             this.game.drawImg(p)
         }

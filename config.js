@@ -1,3 +1,6 @@
 const config = {
-    player_speed: 5
+    pipeSpaceX: {
+        comments: '管子横向间距：',
+        value: 150,
+    },
 }
